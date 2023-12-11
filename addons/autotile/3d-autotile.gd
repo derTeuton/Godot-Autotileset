@@ -275,24 +275,25 @@ func _handle_environment2_mesh():
 # Verwaltet die einzelnen Tilesets
 func _handle_categories( _categorie_container : Array ):
 	for categorie in _categorie_container:
+		var air_container : Array = self.get_used_cells_by_item(air)
+		var river1_container : Array = self.get_used_cells_by_item(river)
+		var path1_container : Array = self.get_used_cells_by_item(path)
+		var rock_container : Array = self.get_used_cells_by_item(rock)
+		var stone_container : Array = self.get_used_cells_by_item(stone)
 		if categorie == air:
-			var air_container : Array = self.get_used_cells_by_item(air)
 			_handle_air(air_container)
 		elif categorie == river:
-			var river_container : Array = self.get_used_cells_by_item(river)
-			_handle_2d( river_container,river_mesh_container,sub_gridmap_river1 )
+			river1_container
+			_handle_2d( river1_container,river_mesh_container,sub_gridmap_river1 )
 			pass
 		elif categorie == path:
-			var path_container : Array = self.get_used_cells_by_item(path)
-			_handle_2d( path_container,path_mesh_container,sub_gridmap_path1 )
+			_handle_2d( path1_container,path_mesh_container,sub_gridmap_path1 )
 			pass
 		elif categorie == rock:
-			var rock_container : Array = self.get_used_cells_by_item(rock)
-			_handle_3d( rock_container,rock_mesh_container,rock_cliff_mesh_container,sub_gridmap_environment1 )
+			_handle_3d( rock_container,river1_container,path1_container,rock_mesh_container,rock_cliff_mesh_container,sub_gridmap_environment1 )
 			
 			pass
 		elif categorie == stone:
-			var rock_container : Array = self.get_used_cells_by_item(stone)
 #			_handle_environment_cell(rock_container, cliff_rock_mesh_container, rock_mesh_container)
 			pass
 		pass
@@ -334,11 +335,42 @@ func _place_cell( gridmap : GridMap, _position : Vector3i, _mesh : int, _orienta
 		pass
 	gridmap.set_cell_item( _position, _mesh, get_orthogonal_index_from_basis(_orientation) ) 
 	pass
+#
+## Platziert eine Zelle für 3D Tiles
+#func _place_cell_3d( gridmap : GridMap, _position : Vector3i, _cell_container : Array, _mesh1 : int, _mesh2 : int, _mesh_container : Array, _cliff_mesh_container : Array, _orientation : Basis = north_angle ):
+#	var k : int = 0
+#	var iterate : bool = true
+#	var _mesh : int
+#
+#	for gridmaps in sub_gridmaps:
+#		while iterate:
+#			if _position + k * down_vec in _cell_container:
+#				if gridmaps == gridmap:
+#					if k == 0:
+#						_mesh = _mesh1
+#					else:
+#						_mesh = _mesh2
+#						_handle_3d(_cell_container,_mesh_container,_cliff_mesh_container,gridmap)
+#						pass
+#					gridmap.set_cell_item( _position + k * down_vec, _mesh, get_orthogonal_index_from_basis(_orientation) )
+#					pass
+#				else:
+#					gridmaps.set_cell_item( _position + k * down_vec, -1 )
+#					pass
+#				k += 1
+#				pass
+#			else:
+#				iterate = false
+#				pass
+#			pass
+#		pass
+#	pass
 
-func _handle_3d( _cell_container : Array, _mesh_container : Array, _cliff_mesh_container : Array, _gridmap : GridMap ):
+func _handle_3d( _cell_container : Array, _river_cell_container : Array, _path_cell_container : Array, _mesh_container : Array, _cliff_mesh_container : Array, _gridmap : GridMap ):
 	for _cell in _cell_container:
 		_false_variables()
-		_check_variables(_cell,_cell_container)
+		var cell_container : Array = _river_cell_container + _path_cell_container
+		_check_variables(_cell,_cell_container,cell_container)
 		#print([dir, _cell])
 		
 		if dir[4]: pass # dir[4] = up
@@ -444,262 +476,166 @@ func _handle_3d( _cell_container : Array, _mesh_container : Array, _cliff_mesh_c
 		pass
 	pass
 
-func _check_variables( _cell : Vector3i, _cell_container : Array ):
+func _check_variables( _cell : Vector3i, _cell_container : Array, _ignore_cell_container : Array ):
+	var check_container : Array = _cell_container + _ignore_cell_container
 	for index in [0,1,2,3,4,5]:
-		if _cell + dir_vec[index] in _cell_container:
+		if _cell + dir_vec[index] in check_container:
 			dir[index] = true
 	for index in [0,1,2,3,4,5,6,7,8,9,10,11]:
-		if _cell + dir2_vec[index] in _cell_container:
+		if _cell + dir2_vec[index] in check_container:
 			dir2[index] = true
 	for index in [0,1,2,3,4,5,6,7]:
-		if _cell + dir3_vec[index] in _cell_container:
+		if _cell + dir3_vec[index] in check_container:
 			dir3[index] = true
 	pass
 
 # Regelt alle Tiles die 2D funktionieren sollen
 func _handle_2d( _cell_container : Array, _mesh_container : Array, _gridmap : GridMap ):
-	for cell in _cell_container:
-		var way_main : int = _neighbour_check(cell,_cell_container,0,false).x
-		var way_corner : int = _neighbour_check(cell,_cell_container,0,false).y
+	for _cell in _cell_container:
+		_false_variables()
+		_check_variables(_cell,_cell_container,[  ])
 		
-		
-		# 0-way
-		if way_main == 0:
-			_place_cell(_gridmap,cell,_mesh_container[0])
-			pass
-		# 1-way
-		elif way_main == 1:
-			if north:
-				_place_cell(_gridmap,cell,_mesh_container[1],north_angle)
+		for i in [0,1,2,3]:
+			# die vier Himmelsrichtungen
+			var index1 : int = (i+0) % 4
+			var index2 : int = (i+1) % 4
+			var index3 : int = (i+2) % 4
+			var index4 : int = (i+3) % 4
+			# 0-way
+			if not dir[index1] and not dir[index2] and not dir[index3] and not dir[index4]:
+				_place_cell(_gridmap,_cell,_mesh_container[0])
 				pass
-			elif east:
-				_place_cell(_gridmap,cell,_mesh_container[1],east_angle)
-				pass
-			elif south:
-				_place_cell(_gridmap,cell,_mesh_container[1],south_angle)
-				pass
-			elif west:
-				_place_cell(_gridmap,cell,_mesh_container[1],west_angle)
-				pass
-			pass
-		# 2-way und 2-way-curve und 3-way-corner
-		elif way_main == 2:
-			if north and east and not northeast:
-				_place_cell(_gridmap,cell,_mesh_container[2],north_angle)
-				pass
-			elif east and south and not southeast:
-				_place_cell(_gridmap,cell,_mesh_container[2],east_angle)
-				pass
-			elif south and west and not southwest:
-				_place_cell(_gridmap,cell,_mesh_container[2],south_angle)
-				pass
-			elif west and north and not northwest:
-				_place_cell(_gridmap,cell,_mesh_container[2],west_angle)
-				pass
-			elif north and south:
-				_place_cell(_gridmap,cell,_mesh_container[3],north_angle)
-				pass
-			elif east and west:
-				_place_cell(_gridmap,cell,_mesh_container[3],east_angle)
-				pass
-			if north and east and northeast:
-				_place_cell(_gridmap,cell,_mesh_container[4],north_angle)
-				pass
-			elif east and south and southeast:
-				_place_cell(_gridmap,cell,_mesh_container[4],east_angle)
-				pass
-			elif south and west and southwest:
-				_place_cell(_gridmap,cell,_mesh_container[4],south_angle)
-				pass
-			elif west and north and northwest:
-				_place_cell(_gridmap,cell,_mesh_container[4],west_angle)
-				pass
-			pass
-		# 3-way-cross und 4-way und 4-way-mirror und 5-way-edge
-		elif way_main == 3:
-			if not north and not southeast and not southwest:
-				_place_cell(_gridmap,cell,_mesh_container[5],north_angle)
-				pass
-			elif not east and not southwest and not northwest:
-				_place_cell(_gridmap,cell,_mesh_container[5],east_angle)
-				pass
-			elif not south and not northwest and not northeast:
-				_place_cell(_gridmap,cell,_mesh_container[5],south_angle)
-				pass
-			elif not west and not northeast and not southeast:
-				_place_cell(_gridmap,cell,_mesh_container[5],west_angle)
-				pass
-			elif not north and southeast and not southwest:
-				_place_cell(_gridmap,cell,_mesh_container[6],north_angle)
-				pass
-			elif not east and southwest and not northwest:
-				_place_cell(_gridmap,cell,_mesh_container[6],east_angle)
-				pass
-			elif not south and northwest and not northeast:
-				_place_cell(_gridmap,cell,_mesh_container[6],south_angle)
-				pass
-			elif not west and northeast and not southeast:
-				_place_cell(_gridmap,cell,_mesh_container[6],west_angle)
-				pass
-			elif not north and not southeast and southwest:
-				_place_cell(_gridmap,cell,_mesh_container[7],north_angle)
-				pass
-			elif not east and not southwest and northwest:
-				_place_cell(_gridmap,cell,_mesh_container[7],east_angle)
-				pass
-			elif not south and not northwest and northeast:
-				_place_cell(_gridmap,cell,_mesh_container[7],south_angle)
-				pass
-			elif not west and not northeast and southeast:
-				_place_cell(_gridmap,cell,_mesh_container[7],west_angle)
-				pass
-			elif not north and southeast and southwest:
-				_place_cell(_gridmap,cell,_mesh_container[8],north_angle)
-				pass
-			elif not east and southwest and northwest:
-				_place_cell(_gridmap,cell,_mesh_container[8],east_angle)
-				pass
-			elif not south and northwest and northeast:
-				_place_cell(_gridmap,cell,_mesh_container[8],south_angle)
-				pass
-			elif not west and northeast and southeast:
-				_place_cell(_gridmap,cell,_mesh_container[8],west_angle)
-				pass
-			pass
-		# 4-way-cross und 5-way und 6-way und 6-way-opposite und 7-way und 8-way
-		elif way_main == 4:
-			if not northeast and not southeast and not southwest and not northwest:
-				_place_cell(_gridmap,cell,_mesh_container[9],north_angle)
-				pass
-			elif northeast and not southeast and not southwest and not northwest:
-				_place_cell(_gridmap,cell,_mesh_container[10],north_angle)
-				pass
-			elif not northeast and southeast and not southwest and not northwest:
-				_place_cell(_gridmap,cell,_mesh_container[10],east_angle)
-				pass
-			elif not northeast and not southeast and  southwest and not northwest:
-				_place_cell(_gridmap,cell,_mesh_container[10],south_angle)
-				pass
-			elif not northeast and not southeast and not southwest and northwest:
-				_place_cell(_gridmap,cell,_mesh_container[10],west_angle)
-				pass
-			elif northeast and southeast and not southwest and not northwest:
-				_place_cell(_gridmap,cell,_mesh_container[11],north_angle)
-				pass
-			elif not northeast and southeast and southwest and not northwest:
-				_place_cell(_gridmap,cell,_mesh_container[11],east_angle)
-				pass
-			elif not northeast and not southeast and southwest and northwest:
-				_place_cell(_gridmap,cell,_mesh_container[11],south_angle)
-				pass
-			elif northeast and not southeast and not southwest and northwest:
-				_place_cell(_gridmap,cell,_mesh_container[11],west_angle)
-				pass
-			elif northeast and not southeast and southwest and not northwest:
-				_place_cell(_gridmap,cell,_mesh_container[12],north_angle)
-				pass
-			elif not northeast and southeast and not southwest and northwest:
-				_place_cell(_gridmap,cell,_mesh_container[12],east_angle)
-				pass
-			elif not northeast and southeast and southwest and northwest:
-				_place_cell(_gridmap,cell,_mesh_container[13],north_angle)
-				pass
-			elif northeast and not southeast and southwest and northwest:
-				_place_cell(_gridmap,cell,_mesh_container[13],east_angle)
-				pass
-			elif northeast and southeast and not southwest and northwest:
-				_place_cell(_gridmap,cell,_mesh_container[13],south_angle)
-				pass
-			elif northeast and southeast and southwest and not northwest:
-				_place_cell(_gridmap,cell,_mesh_container[13],west_angle)
-				pass
-			elif northeast and southeast and southwest and northwest:
-				_place_cell(_gridmap,cell,_mesh_container[14])
-				pass
-			pass
+			# 1-way
+			elif dir[index1] and not dir[index2] and not dir[index3] and not dir[index4]:
+				_place_cell(_gridmap,_cell,_mesh_container[1],dir_angle[index1])
+			# 2-way-straight
+			elif dir[index1] and not dir[index2] and dir[index3] and not dir[index4]:
+				_place_cell(_gridmap,_cell,_mesh_container[3],dir_angle[index1])
+			
+			elif dir[index1] and dir[index2] and not dir[index3] and not dir[index4]:
+				# 2-way-curve
+				if not dir2[index1]:
+					_place_cell(_gridmap,_cell,_mesh_container[2],dir_angle[index1])
+				# 3-way-corner
+				elif dir2[index1]:
+					_place_cell(_gridmap,_cell,_mesh_container[4],dir_angle[index1])
+			
+			elif dir[index1] and dir[index2] and dir[index3] and not dir[index4]:
+				# 3-way-cross
+				if not dir2[index1] and not dir2[index2]:
+					_place_cell(_gridmap,_cell,_mesh_container[5],dir_angle[index1])
+				# 4-way
+				elif dir2[index1] and not dir2[index2]:
+					_place_cell(_gridmap,_cell,_mesh_container[6],dir_angle[index1])
+				# 4-way-mirror
+				elif not dir2[index1] and dir2[index2]:
+					_place_cell(_gridmap,_cell,_mesh_container[7],dir_angle[index1])
+				# 5-way-edge
+				elif dir2[index1] and dir2[index2]:
+					_place_cell(_gridmap,_cell,_mesh_container[8],dir_angle[index1])
+			
+			elif dir[index1] and dir[index2] and dir[index3] and dir[index4]:
+				# 4-way-cross
+				if not dir2[index1] and not dir2[index2] and not dir2[index3] and not dir2[index4]:
+					_place_cell(_gridmap,_cell,_mesh_container[9],dir_angle[index1])
+				# 5-way
+				elif dir2[index1] and not dir2[index2] and not dir2[index3] and not dir2[index4]:
+					_place_cell(_gridmap,_cell,_mesh_container[10],dir_angle[index1])
+				# 6-way
+				elif dir2[index1] and dir2[index2] and not dir2[index3] and not dir2[index4]:
+					_place_cell(_gridmap,_cell,_mesh_container[11],dir_angle[index1])
+				# 6-way-opposite
+				elif dir2[index1] and not dir2[index2] and dir2[index3] and not dir2[index4]:
+					_place_cell(_gridmap,_cell,_mesh_container[12],dir_angle[index1])
+				# 7-way
+				elif dir2[index1] and dir2[index2] and dir2[index3] and not dir2[index4]:
+					_place_cell(_gridmap,_cell,_mesh_container[13],dir_angle[index1])
+				# 8-way
+				elif dir2[index1] and dir2[index2] and dir2[index3] and dir2[index4]:
+					_place_cell(_gridmap,_cell,_mesh_container[14],dir_angle[index1])
 		pass
 	pass
-
-# Frägt die Nachbar Zellen kategorien ab
-func _neighbour_check( _cell : Vector3i, _cell_container : Array, _level : int = 0, _3d : bool = true) -> Vector3i:
-	var way1 : int = 0
-	var way2 : int = 0
-	var way3 : int = 0
-	if _3d:
-		if _level == 0:
-			for dir in first_check_3D:
-				if _cell + dir in _cell_container:
-					_get_orientation(dir)
-					way1 += 1
-					pass
-				pass
-			for dir in second_check_3D:
-				if _cell + dir in _cell_container:
-					_get_orientation(dir)
-					way2 += 1
-					pass
-				pass
-			for dir in third_check_3D:
-				if _cell + dir in _cell_container:
-					_get_orientation(dir)
-					way3 += 1
-					pass
-				pass
-			pass
-		elif _level == 1:
-			for dir in first_check_2D:
-				if _cell + dir + down_vec  in _cell_container:
-					way1 += 1
-					pass
-				pass
-			for dir in second_check_2D:
-				if _cell + dir + down_vec in _cell_container:
-					way2 += 1
-					pass
-				pass
-			pass
-		elif _level == 2:
-			for dir in first_check_2D:
-				if _cell + dir  in _cell_container:
-					way1 += 1
-					pass
-				pass
-			for dir in second_check_2D:
-				if _cell + dir in _cell_container:
-					way2 += 1
-					pass
-				pass
-			pass
-		elif _level == 3:
-			for dir in first_check_2D:
-				if _cell + dir + up_vec in _cell_container:
-					way1 += 1
-					pass
-				pass
-			for dir in second_check_2D:
-				if _cell + dir + up_vec in _cell_container:
-					way2 += 1
-					pass
-				pass
-			pass
-		pass
-	else:
-		for dir in first_check_2D:
-			if _cell + dir in _cell_container:
-				_get_orientation(dir)
-				way1 += 1
-				pass
-			pass
-		for dir in second_check_2D:
-			if _cell + dir in _cell_container:
-				_get_orientation(dir)
-				way2 += 1
-				pass
-			pass
-		pass
-	
-	return Vector3i(way1,way2,way3)
-	pass
+#
+## Frägt die Nachbar Zellen kategorien ab
+#func _neighbour_check( _cell : Vector3i, _cell_container : Array, _level : int = 0, _3d : bool = true) -> Vector3i:
+	#var way1 : int = 0
+	#var way2 : int = 0
+	#var way3 : int = 0
+	#if _3d:
+		#if _level == 0:
+			#for dir in first_check_3D:
+				#if _cell + dir in _cell_container:
+					#_get_orientation(dir)
+					#way1 += 1
+					#pass
+				#pass
+			#for dir in second_check_3D:
+				#if _cell + dir in _cell_container:
+					#_get_orientation(dir)
+					#way2 += 1
+					#pass
+				#pass
+			#for dir in third_check_3D:
+				#if _cell + dir in _cell_container:
+					#_get_orientation(dir)
+					#way3 += 1
+					#pass
+				#pass
+			#pass
+		#elif _level == 1:
+			#for dir in first_check_2D:
+				#if _cell + dir + down_vec  in _cell_container:
+					#way1 += 1
+					#pass
+				#pass
+			#for dir in second_check_2D:
+				#if _cell + dir + down_vec in _cell_container:
+					#way2 += 1
+					#pass
+				#pass
+			#pass
+		#elif _level == 2:
+			#for dir in first_check_2D:
+				#if _cell + dir  in _cell_container:
+					#way1 += 1
+					#pass
+				#pass
+			#for dir in second_check_2D:
+				#if _cell + dir in _cell_container:
+					#way2 += 1
+					#pass
+				#pass
+			#pass
+		#elif _level == 3:
+			#for dir in first_check_2D:
+				#if _cell + dir + up_vec in _cell_container:
+					#way1 += 1
+					#pass
+				#pass
+			#for dir in second_check_2D:
+				#if _cell + dir + up_vec in _cell_container:
+					#way2 += 1
+					#pass
+				#pass
+			#pass
+		#pass
+	#else:
+		#for dir in first_check_2D:
+			#if _cell + dir in _cell_container:
+				#_get_orientation(dir)
+				#way1 += 1
+				#pass
+			#pass
+		#for dir in second_check_2D:
+			#if _cell + dir in _cell_container:
+				#_get_orientation(dir)
+				#way2 += 1
+				#pass
+			#pass
+		#pass
+	#
+	#return Vector3i(way1,way2,way3)
+	#pass
 
 # Setzt alle 26 Schalter auf false
 func _false_variables():
