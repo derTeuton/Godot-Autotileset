@@ -7,7 +7,7 @@ unter zuhilfenahme des Kenney Nature Kit erstelllt:
 https://kenney.nl/assets/nature-kit
 
 
-Das Plugin stellt 5 neue Nodes zur Verwendung bereit
+Das Plugin stellt 5 neue Nodes zur Verwendung bereit;
 The Plugin adds 5 new Nodes
 
 1. AutoGridMap
@@ -32,6 +32,9 @@ Zu guter Letzt legt es für jedes Tilemap ein 'Mesh' im eigenem Mesh_Library an.
 nun kann man auf dem AutoGridMap Malen und das script platztiert die jeweiligen Meshes auf den jeweiligen Gridmaps
 
 
+
 ein Tilemap liefert lediglich das Mesh_Library für seine Kategorie. 
+
+Das 3D-Tilemap brauch zusätzlich das für es asugerichtete Sand, Fluß und Weg Tilemap, welche jeweils 2D-Tilemaps sein müssen.
 
 ein Tile speichert die verbindungen die ein Tile haben soll und nicht haben soll.
