@@ -32,5 +32,6 @@ Zu guter Letzt legt es für jedes Tilemap ein 'Mesh' im eigenem Mesh_Library an.
 nun kann man auf dem AutoGridMap Malen und das script platztiert die jeweiligen Meshes auf den jeweiligen Gridmaps
 
 
-ein Tilemap liefert lediglich das Mesh_Library für seine Kategorie
-ein Tile speichert die verbindungen die ein Tile haben soll und nicht haben soll
+ein Tilemap liefert lediglich das Mesh_Library für seine Kategorie. 
+
+ein Tile speichert die verbindungen die ein Tile haben soll und nicht haben soll.
