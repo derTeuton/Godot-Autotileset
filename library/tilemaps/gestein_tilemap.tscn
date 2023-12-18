@@ -1,0 +1,776 @@
+[gd_scene load_steps=4 format=3 uid="uid://blskmtkvna6a7"]
+
+[ext_resource type="Script" path="res://addons/autotile/tilemap_3d_script.gd" id="1_8j4ok"]
+[ext_resource type="MeshLibrary" uid="uid://c61dbswxy4ir3" path="res://library/mesh/stone_mesh.tres" id="2_qdo2j"]
+[ext_resource type="Script" path="res://addons/autotile/tile3d_script.gd" id="2_sdknr"]
+
+[node name="Gestein" type="Node"]
+script = ExtResource("1_8j4ok")
+tile_data = [["ground", 32, [true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false], [false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["0-ecke-außen-cliff", 24, [false, false, true, true, false, true, false, false, true, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, true, false], [true, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["1-ecke-außen-cliff", 26, [true, false, false, true, false, true, false, false, false, true, false, false, false, false, true, false, false, true, false, false, false, false, false, false, false, true], [false, true, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["2-ecke-außen-cliff", 28, [true, true, false, false, false, true, true, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, true, false, false, false], [false, false, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["3-ecke-außen-cliff", 30, [false, true, true, false, false, true, false, true, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, true, false, false], [true, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["0-gerade-cliff", 25, [false, true, true, true, false, true, false, true, true, false, false, false, false, false, false, true, true, true, false, false, false, false, false, true, true, false], [true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["1-gerade-cliff", 27, [true, false, true, true, false, true, false, false, true, true, false, false, false, false, true, false, true, true, false, false, false, false, false, false, true, true], [false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["2-gerade-cliff", 29, [true, true, false, true, false, true, true, false, false, true, false, false, false, false, true, true, false, true, false, false, false, false, true, false, false, true], [false, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["3-gerade-cliff", 31, [true, true, true, false, false, true, true, true, false, false, false, false, false, false, true, true, true, false, false, false, false, false, true, true, false, false], [false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["0-ecke-außen", 13, [false, false, true, true, true, true, false, false, true, false, false, false, true, true, false, false, true, true, false, false, true, false, false, false, true, false], [true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["1-ecke-außen", 15, [true, false, false, true, true, true, false, false, false, true, true, false, false, true, true, false, false, true, false, false, false, true, false, false, false, true], [false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["2-ecke-außen", 12, [true, true, false, false, true, true, true, false, false, false, true, true, false, false, true, true, false, false, true, false, false, false, true, false, false, false], [false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["3-ecke-außen", 14, [false, true, true, false, true, true, false, true, false, false, false, true, true, false, false, true, true, false, false, true, false, false, false, true, false, false], [true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["0-gerade", 17, [false, true, true, true, true, true, false, true, true, false, false, true, true, true, false, true, true, true, false, true, true, false, false, true, true, false], [true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["1-gerade", 19, [true, false, true, true, true, true, false, false, true, true, true, false, true, true, true, false, true, true, false, false, true, true, false, false, true, true], [false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["2-gerade", 16, [true, true, false, true, true, true, true, false, false, true, true, true, false, true, true, true, false, true, true, false, false, true, true, false, false, true], [false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["3-gerade", 18, [true, true, true, false, true, true, true, true, false, false, true, true, true, false, true, true, true, false, true, true, false, false, true, true, false, false], [false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["0-ecke-außen-riff", 1, [false, false, true, true, true, false, false, false, true, false, false, false, true, true, false, false, false, false, false, false, true, false, false, false, false, false], [true, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["1-ecke-außen-riff", 3, [true, false, false, true, true, false, false, false, false, true, true, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false], [false, true, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["2-ecke-außen-riff", 0, [true, true, false, false, true, false, true, false, false, false, true, true, false, false, false, false, false, false, true, false, false, false, false, false, false, false], [false, false, true, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["3-ecke-außen-riff", 2, [false, true, true, false, true, false, false, true, false, false, false, true, true, false, false, false, false, false, false, true, false, false, false, false, false, false], [true, false, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["0-gerade-riff", 5, [false, true, true, true, true, false, false, true, true, false, false, true, true, true, false, false, false, false, false, true, true, false, false, false, false, false], [true, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["1-gerade-riff", 7, [true, false, true, true, true, false, false, false, true, true, false, false, true, true, false, false, false, false, false, false, true, true, false, false, false, false], [false, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["2-gerade-riff", 4, [true, true, false, true, true, false, true, false, false, true, true, true, false, true, false, false, false, false, true, false, false, true, false, false, false, false], [false, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["3-gerade-riff", 6, [true, true, true, false, true, false, true, true, false, false, true, true, true, false, false, false, false, false, true, true, false, false, false, false, false, false], [false, false, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["0-ecke-innen-cliff", 33, [true, true, true, true, false, true, true, true, false, true, false, false, false, false, true, true, true, true, false, false, false, false, true, true, false, true], [false, false, false, false, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["1-ecke-innen-cliff", 34, [true, true, true, true, false, true, true, true, true, false, false, false, false, false, true, true, true, true, false, false, false, false, true, true, true, false], [false, false, false, false, true, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["2-ecke-innen-cliff", 36, [true, true, true, true, false, true, false, true, true, true, false, false, false, false, true, true, true, true, false, false, false, false, false, true, true, true], [false, false, false, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["3-ecke-innen-cliff", 35, [true, true, true, true, false, true, true, false, true, true, false, false, false, false, true, true, true, true, false, false, false, false, true, false, true, true], [false, false, false, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["0-ecke-innen", 23, [true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, false, true, true, true, false, true], [false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["1-ecke-innen", 20, [true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, false, true, true, true, false], [false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["2-ecke-innen", 21, [true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, false, true, true, true, false, true, true, true], [false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["3-ecke-innen", 22, [true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, false, true, true, true, false, true, true], [false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["0-ecke-innen-riff", 8, [true, true, true, true, true, false, true, true, false, true, true, true, true, false, false, false, false, false, true, true, false, true, false, false, false, false], [false, false, false, false, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["1-ecke-innen-riff", 11, [true, true, true, true, true, false, true, true, true, false, true, true, true, true, false, false, false, false, true, true, true, false, false, false, false, false], [false, false, false, false, false, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["2-ecke-innen-riff", 10, [true, true, true, true, true, false, false, true, true, true, true, true, true, true, false, false, false, false, false, true, true, true, false, false, false, false], [false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]], ["3-ecke-innen-riff", 9, [true, true, true, true, true, false, true, false, true, true, true, true, true, true, false, false, false, false, true, false, true, true, false, false, false, false], [false, false, false, false, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]]]
+mesh_library3D = ExtResource("2_qdo2j")
+tile_count = 37
+
+[node name="Tile0" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "ground"
+dir_true = [true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+dir_false = [false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+west1 = true
+up2 = true
+
+[node name="Tile1" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "0-ecke-außen-cliff"
+dir_true = [false, false, true, true, false, true, false, false, true, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, true, false]
+dir_false = [true, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+south1 = true
+west1 = true
+down1 = true
+southwest1 = true
+southdown1 = true
+westdown1 = true
+southwestdown1 = true
+north2 = true
+east2 = true
+up2 = true
+
+[node name="Tile2" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "1-ecke-außen-cliff"
+dir_true = [true, false, false, true, false, true, false, false, false, true, false, false, false, false, true, false, false, true, false, false, false, false, false, false, false, true]
+dir_false = [false, true, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+west1 = true
+down1 = true
+northwest1 = true
+northdown1 = true
+westdown1 = true
+northwestdown1 = true
+east2 = true
+south2 = true
+up2 = true
+
+[node name="Tile3" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "2-ecke-außen-cliff"
+dir_true = [true, true, false, false, false, true, true, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, true, false, false, false]
+dir_false = [false, false, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+down1 = true
+northeast1 = true
+northdown1 = true
+eastdown1 = true
+northeastdown1 = true
+south2 = true
+west2 = true
+up2 = true
+
+[node name="Tile4" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "3-ecke-außen-cliff"
+dir_true = [false, true, true, false, false, true, false, true, false, false, false, false, false, false, false, true, true, false, false, false, false, false, false, true, false, false]
+dir_false = [true, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+east1 = true
+south1 = true
+down1 = true
+southeast1 = true
+eastdown1 = true
+southdown1 = true
+southeastdown1 = true
+north2 = true
+west2 = true
+up2 = true
+
+[node name="Tile5" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "0-gerade-cliff"
+dir_true = [false, true, true, true, false, true, false, true, true, false, false, false, false, false, false, true, true, true, false, false, false, false, false, true, true, false]
+dir_false = [true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+east1 = true
+south1 = true
+west1 = true
+down1 = true
+southeast1 = true
+southwest1 = true
+eastdown1 = true
+southdown1 = true
+westdown1 = true
+southeastdown1 = true
+southwestdown1 = true
+north2 = true
+up2 = true
+
+[node name="Tile6" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "1-gerade-cliff"
+dir_true = [true, false, true, true, false, true, false, false, true, true, false, false, false, false, true, false, true, true, false, false, false, false, false, false, true, true]
+dir_false = [false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+south1 = true
+west1 = true
+down1 = true
+southwest1 = true
+northwest1 = true
+northdown1 = true
+southdown1 = true
+westdown1 = true
+southwestdown1 = true
+northwestdown1 = true
+east2 = true
+up2 = true
+
+[node name="Tile7" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "2-gerade-cliff"
+dir_true = [true, true, false, true, false, true, true, false, false, true, false, false, false, false, true, true, false, true, false, false, false, false, true, false, false, true]
+dir_false = [false, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+west1 = true
+down1 = true
+northeast1 = true
+northwest1 = true
+northdown1 = true
+eastdown1 = true
+westdown1 = true
+northeastdown1 = true
+northwestdown1 = true
+south2 = true
+up2 = true
+
+[node name="Tile8" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "3-gerade-cliff"
+dir_true = [true, true, true, false, false, true, true, true, false, false, false, false, false, false, true, true, true, false, false, false, false, false, true, true, false, false]
+dir_false = [false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+down1 = true
+northeast1 = true
+southeast1 = true
+northdown1 = true
+eastdown1 = true
+southdown1 = true
+northeastdown1 = true
+southeastdown1 = true
+west2 = true
+up2 = true
+
+[node name="Tile9" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "0-ecke-außen"
+dir_true = [false, false, true, true, true, true, false, false, true, false, false, false, true, true, false, false, true, true, false, false, true, false, false, false, true, false]
+dir_false = [true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+south1 = true
+west1 = true
+up1 = true
+down1 = true
+southwest1 = true
+southup1 = true
+westup1 = true
+southdown1 = true
+westdown1 = true
+southwestup1 = true
+southwestdown1 = true
+north2 = true
+east2 = true
+
+[node name="Tile10" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "1-ecke-außen"
+dir_true = [true, false, false, true, true, true, false, false, false, true, true, false, false, true, true, false, false, true, false, false, false, true, false, false, false, true]
+dir_false = [false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+west1 = true
+up1 = true
+down1 = true
+northwest1 = true
+northup1 = true
+westup1 = true
+northdown1 = true
+westdown1 = true
+northwestup1 = true
+northwestdown1 = true
+east2 = true
+south2 = true
+
+[node name="Tile11" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "2-ecke-außen"
+dir_true = [true, true, false, false, true, true, true, false, false, false, true, true, false, false, true, true, false, false, true, false, false, false, true, false, false, false]
+dir_false = [false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+up1 = true
+down1 = true
+northeast1 = true
+northup1 = true
+eastup1 = true
+northdown1 = true
+eastdown1 = true
+northeastup1 = true
+northeastdown1 = true
+south2 = true
+west2 = true
+
+[node name="Tile12" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "3-ecke-außen"
+dir_true = [false, true, true, false, true, true, false, true, false, false, false, true, true, false, false, true, true, false, false, true, false, false, false, true, false, false]
+dir_false = [true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+east1 = true
+south1 = true
+up1 = true
+down1 = true
+southeast1 = true
+eastup1 = true
+southup1 = true
+eastdown1 = true
+southdown1 = true
+southeastup1 = true
+southeastdown1 = true
+north2 = true
+west2 = true
+
+[node name="Tile13" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "0-gerade"
+dir_true = [false, true, true, true, true, true, false, true, true, false, false, true, true, true, false, true, true, true, false, true, true, false, false, true, true, false]
+dir_false = [true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+east1 = true
+south1 = true
+west1 = true
+up1 = true
+down1 = true
+southeast1 = true
+southwest1 = true
+eastup1 = true
+southup1 = true
+westup1 = true
+eastdown1 = true
+southdown1 = true
+westdown1 = true
+southeastup1 = true
+southwestup1 = true
+southeastdown1 = true
+southwestdown1 = true
+north2 = true
+
+[node name="Tile14" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "1-gerade"
+dir_true = [true, false, true, true, true, true, false, false, true, true, true, false, true, true, true, false, true, true, false, false, true, true, false, false, true, true]
+dir_false = [false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+south1 = true
+west1 = true
+up1 = true
+down1 = true
+southwest1 = true
+northwest1 = true
+northup1 = true
+southup1 = true
+westup1 = true
+northdown1 = true
+southdown1 = true
+westdown1 = true
+southwestup1 = true
+northwestup1 = true
+southwestdown1 = true
+northwestdown1 = true
+east2 = true
+
+[node name="Tile15" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "2-gerade"
+dir_true = [true, true, false, true, true, true, true, false, false, true, true, true, false, true, true, true, false, true, true, false, false, true, true, false, false, true]
+dir_false = [false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+west1 = true
+up1 = true
+down1 = true
+northeast1 = true
+northwest1 = true
+northup1 = true
+eastup1 = true
+westup1 = true
+northdown1 = true
+eastdown1 = true
+westdown1 = true
+northeastup1 = true
+northwestup1 = true
+northeastdown1 = true
+northwestdown1 = true
+south2 = true
+
+[node name="Tile16" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "3-gerade"
+dir_true = [true, true, true, false, true, true, true, true, false, false, true, true, true, false, true, true, true, false, true, true, false, false, true, true, false, false]
+dir_false = [false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+up1 = true
+down1 = true
+northeast1 = true
+southeast1 = true
+northup1 = true
+eastup1 = true
+southup1 = true
+northdown1 = true
+eastdown1 = true
+southdown1 = true
+northeastup1 = true
+southeastup1 = true
+northeastdown1 = true
+southeastdown1 = true
+west2 = true
+
+[node name="Tile17" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "0-ecke-außen-riff"
+dir_true = [false, false, true, true, true, false, false, false, true, false, false, false, true, true, false, false, false, false, false, false, true, false, false, false, false, false]
+dir_false = [true, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+south1 = true
+west1 = true
+up1 = true
+southwest1 = true
+southup1 = true
+westup1 = true
+southwestup1 = true
+north2 = true
+east2 = true
+down2 = true
+
+[node name="Tile18" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "1-ecke-außen-riff"
+dir_true = [true, false, false, true, true, false, false, false, false, true, true, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false]
+dir_false = [false, true, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+west1 = true
+up1 = true
+northwest1 = true
+northup1 = true
+westup1 = true
+northwestup1 = true
+east2 = true
+south2 = true
+down2 = true
+
+[node name="Tile19" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "2-ecke-außen-riff"
+dir_true = [true, true, false, false, true, false, true, false, false, false, true, true, false, false, false, false, false, false, true, false, false, false, false, false, false, false]
+dir_false = [false, false, true, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+up1 = true
+northeast1 = true
+northup1 = true
+eastup1 = true
+northeastup1 = true
+south2 = true
+west2 = true
+down2 = true
+
+[node name="Tile20" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "3-ecke-außen-riff"
+dir_true = [false, true, true, false, true, false, false, true, false, false, false, true, true, false, false, false, false, false, false, true, false, false, false, false, false, false]
+dir_false = [true, false, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+east1 = true
+south1 = true
+up1 = true
+southeast1 = true
+eastup1 = true
+southup1 = true
+southeastup1 = true
+north2 = true
+west2 = true
+down2 = true
+
+[node name="Tile21" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "0-gerade-riff"
+dir_true = [false, true, true, true, true, false, false, true, true, false, false, true, true, true, false, false, false, false, false, true, true, false, false, false, false, false]
+dir_false = [true, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+east1 = true
+south1 = true
+west1 = true
+up1 = true
+southeast1 = true
+southwest1 = true
+eastup1 = true
+southup1 = true
+westup1 = true
+southeastup1 = true
+southwestup1 = true
+north2 = true
+down2 = true
+
+[node name="Tile22" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "1-gerade-riff"
+dir_true = [true, false, true, true, true, false, false, false, true, true, false, false, true, true, false, false, false, false, false, false, true, true, false, false, false, false]
+dir_false = [false, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+south1 = true
+west1 = true
+up1 = true
+southwest1 = true
+northwest1 = true
+southup1 = true
+westup1 = true
+southwestup1 = true
+northwestup1 = true
+east2 = true
+down2 = true
+
+[node name="Tile23" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "2-gerade-riff"
+dir_true = [true, true, false, true, true, false, true, false, false, true, true, true, false, true, false, false, false, false, true, false, false, true, false, false, false, false]
+dir_false = [false, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+west1 = true
+up1 = true
+northeast1 = true
+northwest1 = true
+northup1 = true
+eastup1 = true
+westup1 = true
+northeastup1 = true
+northwestup1 = true
+south2 = true
+down2 = true
+
+[node name="Tile24" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "3-gerade-riff"
+dir_true = [true, true, true, false, true, false, true, true, false, false, true, true, true, false, false, false, false, false, true, true, false, false, false, false, false, false]
+dir_false = [false, false, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+up1 = true
+northeast1 = true
+southeast1 = true
+northup1 = true
+eastup1 = true
+southup1 = true
+northeastup1 = true
+southeastup1 = true
+west2 = true
+down2 = true
+
+[node name="Tile25" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "0-ecke-innen-cliff"
+dir_true = [true, true, true, true, false, true, true, true, false, true, false, false, false, false, true, true, true, true, false, false, false, false, true, true, false, true]
+dir_false = [false, false, false, false, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+west1 = true
+down1 = true
+northeast1 = true
+southeast1 = true
+northwest1 = true
+northdown1 = true
+eastdown1 = true
+southdown1 = true
+westdown1 = true
+northeastdown1 = true
+southeastdown1 = true
+northwestdown1 = true
+up2 = true
+southwest2 = true
+
+[node name="Tile26" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "1-ecke-innen-cliff"
+dir_true = [true, true, true, true, false, true, true, true, true, false, false, false, false, false, true, true, true, true, false, false, false, false, true, true, true, false]
+dir_false = [false, false, false, false, true, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+west1 = true
+down1 = true
+northeast1 = true
+southeast1 = true
+southwest1 = true
+northdown1 = true
+eastdown1 = true
+southdown1 = true
+westdown1 = true
+northeastdown1 = true
+southeastdown1 = true
+southwestdown1 = true
+up2 = true
+northwest2 = true
+
+[node name="Tile27" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "2-ecke-innen-cliff"
+dir_true = [true, true, true, true, false, true, false, true, true, true, false, false, false, false, true, true, true, true, false, false, false, false, false, true, true, true]
+dir_false = [false, false, false, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+west1 = true
+down1 = true
+southeast1 = true
+southwest1 = true
+northwest1 = true
+northdown1 = true
+eastdown1 = true
+southdown1 = true
+westdown1 = true
+southeastdown1 = true
+southwestdown1 = true
+northwestdown1 = true
+up2 = true
+northeast2 = true
+
+[node name="Tile28" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "3-ecke-innen-cliff"
+dir_true = [true, true, true, true, false, true, true, false, true, true, false, false, false, false, true, true, true, true, false, false, false, false, true, false, true, true]
+dir_false = [false, false, false, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+west1 = true
+down1 = true
+northeast1 = true
+southwest1 = true
+northwest1 = true
+northdown1 = true
+eastdown1 = true
+southdown1 = true
+westdown1 = true
+northeastdown1 = true
+southwestdown1 = true
+northwestdown1 = true
+up2 = true
+southeast2 = true
+
+[node name="Tile29" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "0-ecke-innen"
+dir_true = [true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, false, true, true, true, false, true]
+dir_false = [false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+west1 = true
+up1 = true
+down1 = true
+northeast1 = true
+southeast1 = true
+northwest1 = true
+northup1 = true
+eastup1 = true
+southup1 = true
+westup1 = true
+northdown1 = true
+eastdown1 = true
+southdown1 = true
+westdown1 = true
+northeastup1 = true
+southeastup1 = true
+northwestup1 = true
+northeastdown1 = true
+southeastdown1 = true
+northwestdown1 = true
+southwest2 = true
+
+[node name="Tile30" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "1-ecke-innen"
+dir_true = [true, true, true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, false, true, true, true, false]
+dir_false = [false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+west1 = true
+up1 = true
+down1 = true
+northeast1 = true
+southeast1 = true
+southwest1 = true
+northup1 = true
+eastup1 = true
+southup1 = true
+westup1 = true
+northdown1 = true
+eastdown1 = true
+southdown1 = true
+westdown1 = true
+northeastup1 = true
+southeastup1 = true
+southwestup1 = true
+northeastdown1 = true
+southeastdown1 = true
+southwestdown1 = true
+northwest2 = true
+
+[node name="Tile31" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "2-ecke-innen"
+dir_true = [true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, false, true, true, true, false, true, true, true]
+dir_false = [false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+west1 = true
+up1 = true
+down1 = true
+southeast1 = true
+southwest1 = true
+northwest1 = true
+northup1 = true
+eastup1 = true
+southup1 = true
+westup1 = true
+northdown1 = true
+eastdown1 = true
+southdown1 = true
+westdown1 = true
+southeastup1 = true
+southwestup1 = true
+northwestup1 = true
+southeastdown1 = true
+southwestdown1 = true
+northwestdown1 = true
+northeast2 = true
+
+[node name="Tile32" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "3-ecke-innen"
+dir_true = [true, true, true, true, true, true, true, false, true, true, true, true, true, true, true, true, true, true, true, false, true, true, true, false, true, true]
+dir_false = [false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+west1 = true
+up1 = true
+down1 = true
+northeast1 = true
+southwest1 = true
+northwest1 = true
+northup1 = true
+eastup1 = true
+southup1 = true
+westup1 = true
+northdown1 = true
+eastdown1 = true
+southdown1 = true
+westdown1 = true
+northeastup1 = true
+southwestup1 = true
+northwestup1 = true
+northeastdown1 = true
+southwestdown1 = true
+northwestdown1 = true
+southeast2 = true
+
+[node name="Tile33" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "0-ecke-innen-riff"
+dir_true = [true, true, true, true, true, false, true, true, false, true, true, true, true, false, false, false, false, false, true, true, false, true, false, false, false, false]
+dir_false = [false, false, false, false, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+west1 = true
+up1 = true
+northeast1 = true
+southeast1 = true
+northwest1 = true
+northup1 = true
+eastup1 = true
+southup1 = true
+northeastup1 = true
+southeastup1 = true
+northwestup1 = true
+down2 = true
+southwest2 = true
+
+[node name="Tile34" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "1-ecke-innen-riff"
+dir_true = [true, true, true, true, true, false, true, true, true, false, true, true, true, true, false, false, false, false, true, true, true, false, false, false, false, false]
+dir_false = [false, false, false, false, false, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+west1 = true
+up1 = true
+northeast1 = true
+southeast1 = true
+southwest1 = true
+northup1 = true
+eastup1 = true
+southup1 = true
+westup1 = true
+northeastup1 = true
+southeastup1 = true
+southwestup1 = true
+down2 = true
+northwest2 = true
+
+[node name="Tile35" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "2-ecke-innen-riff"
+dir_true = [true, true, true, true, true, false, false, true, true, true, true, true, true, true, false, false, false, false, false, true, true, true, false, false, false, false]
+dir_false = [false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+west1 = true
+up1 = true
+southeast1 = true
+southwest1 = true
+northwest1 = true
+northup1 = true
+eastup1 = true
+southup1 = true
+westup1 = true
+southeastup1 = true
+southwestup1 = true
+northwestup1 = true
+down2 = true
+northeast2 = true
+
+[node name="Tile36" type="Node" parent="."]
+script = ExtResource("2_sdknr")
+mesh_name = "3-ecke-innen-riff"
+dir_true = [true, true, true, true, true, false, true, false, true, true, true, true, true, true, false, false, false, false, true, false, true, true, false, false, false, false]
+dir_false = [false, false, false, false, false, true, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+north1 = true
+east1 = true
+south1 = true
+west1 = true
+up1 = true
+northeast1 = true
+southwest1 = true
+northwest1 = true
+northup1 = true
+eastup1 = true
+southup1 = true
+westup1 = true
+northeastup1 = true
+southwestup1 = true
+northwestup1 = true
+down2 = true
+southeast2 = true
